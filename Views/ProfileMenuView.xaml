@@ -1,0 +1,47 @@
+﻿<UserControl
+    x:Class="CRUDMaster.Views.ProfileMenuView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CRUDMaster.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:Background="White"
+    d:DesignHeight="500"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label
+            HorizontalAlignment="Center"
+            Content="CRUD Master"
+            FontSize="24" FontWeight="Bold" />
+        <Label
+            Margin="0,0,0,20"
+            HorizontalAlignment="Center"
+            Content="Profile"
+            FontSize="24" />
+        <ListBox
+            MinWidth="300"
+            MinHeight="300"
+            Margin="0,0,0,20"
+            BorderBrush="Black"
+            BorderThickness="1"
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding Profiles}"
+            SelectedValue="{Binding SelectedProfile}"
+            SelectedValuePath="Name" />
+        <Button
+            Margin="0,0,0,10"
+            Command="{Binding NewProfileCommand}"
+            Content="Neues Profil erstellen" />
+        <Button
+            Margin="0,0,0,10"
+            Command="{Binding LoadProfileCommand}"
+            Content="Profil laden"
+            IsEnabled="{Binding IsProfileSelected}" />
+        <Button
+            Command="{Binding DeleteProfileCommand}"
+            Content="Profil löschen"
+            IsEnabled="{Binding IsProfileSelected}" />
+    </StackPanel>
+</UserControl>
