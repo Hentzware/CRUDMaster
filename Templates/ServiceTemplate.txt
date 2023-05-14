@@ -1,1 +1,74 @@
-﻿
+﻿using AutoMapper;
+using SOLUTIONNAME.Domain.Entities;
+using SOLUTIONNAME.Domain.Interfaces.UPPERNAME;
+using SOLUTIONNAME.Domain.Requests.UPPERNAME;
+using SOLUTIONNAME.Domain.Responses;
+
+namespace SOLUTIONNAME.Domain.Services;
+
+public class UPPERNAMEService : IUPPERNAMEService
+{
+	private readonly IUPPERNAMERepository _LOWERNAMERepository;
+	private readonly IMapper _mapper;
+
+	public UPPERNAMEService(IUPPERNAMERepository LOWERNAMERepository, IMapper mapper)
+	{
+		_LOWERNAMERepository = LOWERNAMERepository;
+		_mapper = mapper;
+	}
+
+	public async Task<UPPERNAMEResponse> AddAsync(AddUPPERNAMERequest request)
+	{
+		var entity = _mapper.Map<UPPERNAME>(request);
+
+		entity.CreatedDate = DateTime.Now;
+
+		var result = _LOWERNAMERepository.Add(entity);
+		var modifiedRecords = await _LOWERNAMERepository.UnitOfWork.SaveChangesAsync();
+
+		return _mapper.Map<UPPERNAMEResponse>(result);
+	}
+
+	public async Task<UPPERNAMEResponse> DeleteAsync(DeleteUPPERNAMERequest request)
+    {
+        var existingRecord = await _LOWERNAMERepository.GetAsync(request.Id);
+
+        existingRecord.IsDeleted = true;
+        existingRecord.DeletedDate = DateTime.Now;
+
+        _LOWERNAMERepository.Update(existingRecord);
+
+        var modifiedRecords = await _LOWERNAMERepository.UnitOfWork.SaveChangesAsync();
+
+        return _mapper.Map<UPPERNAMEResponse>(existingRecord);
+    }
+
+    public async Task<UPPERNAMEResponse> EditAsync(EditUPPERNAMERequest request)
+    {
+        var existingRecord = await _LOWERNAMERepository.GetAsync(request.Id);
+        var entity = _mapper.Map<UPPERNAME>(request);
+
+        entity.Id = existingRecord.Id;
+        entity.CreatedDate = existingRecord.CreatedDate;
+        entity.UpdatedDate = DateTime.Now;
+
+        var result = _LOWERNAMERepository.Update(entity);
+        var modifiedRecords = await _LOWERNAMERepository.UnitOfWork.SaveChangesAsync();
+
+        return _mapper.Map<UPPERNAMEResponse>(result);
+    }
+
+    public async Task<UPPERNAMEResponse> GetAsync(GetUPPERNAMERequest request)
+    {
+        var result = await _LOWERNAMERepository.GetAsync(request.Id);
+
+        return _mapper.Map<UPPERNAMEResponse>(result);
+    }
+
+    public async Task<IEnumerable<UPPERNAMEResponse>> GetAsync()
+    {
+        var result = await _LOWERNAMERepository.GetAsync();
+
+        return result.Select(x => _mapper.Map<UPPERNAMEResponse>(x));
+    }
+}

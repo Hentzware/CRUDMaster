@@ -12,9 +12,11 @@ namespace CRUDMaster
     {
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterScoped<IProfileService, ProfileService>();
-            containerRegistry.RegisterForNavigation<ProfileMenuView, ProfileMenuViewModel>();
-            containerRegistry.RegisterForNavigation<ProfileView, ProfileViewModel>();
+            containerRegistry.RegisterScoped<ISolutionScannerService, SolutionScannerService>();
+            containerRegistry.RegisterScoped<ITemplateService, TemplateService>();
+
+            containerRegistry.RegisterForNavigation<StartView, StartViewModel>();
+            containerRegistry.RegisterForNavigation<MainView, MainViewModel>();
         }
 
         protected override DependencyObject CreateShell()

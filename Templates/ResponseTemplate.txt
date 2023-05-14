@@ -1,1 +1,6 @@
-﻿
+﻿namespace SOLUTIONNAME.Domain.Responses;
+
+public class UPPERNAMEResponse
+{
+	public Guid Id { get; set; }
+}

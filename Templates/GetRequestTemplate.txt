@@ -1,1 +1,6 @@
-﻿
+﻿namespace SOLUTIONNAME.Domain.Requests.UPPERNAME;
+
+public class GetUPPERNAMERequest
+{
+	public Guid Id { get; set; }
+}

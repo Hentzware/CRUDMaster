@@ -17,8 +17,7 @@ namespace CRUDMaster.ViewModels
 
         private void InitializeViews()
         {
-            _regionManager.RegisterViewWithRegion<MenuBarView>("MenuBarRegion");
-            _regionManager.RegisterViewWithRegion<ProfileMenuView>("ContentRegion");
+            _regionManager.RegisterViewWithRegion<StartView>("ContentRegion");
         }
     }
 }

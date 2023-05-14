@@ -1,1 +1,18 @@
-﻿
+﻿using AutoMapper;
+using SOLUTIONNAME.Domain.Requests.UPPERNAME;
+using SOLUTIONNAME.Domain.Responses;
+using SOLUTIONNAME.Domain.Entities;
+
+namespace SOLUTIONNAME.Domain.Profiles;
+
+public class UPPERNAMEProfile : Profile
+{
+	public UPPERNAMEProfile()
+	{
+		CreateMap<UPPERNAME, UPPERNAMEResponse>().ReverseMap();
+
+		CreateMap<UPPERNAME, AddUPPERNAMERequest>().ReverseMap();
+
+		CreateMap<UPPERNAME, EditUPPERNAMERequest>().ReverseMap();
+	}
+}

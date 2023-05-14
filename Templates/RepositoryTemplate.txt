@@ -1,1 +1,45 @@
-﻿
+﻿using SOLUTIONNAME.Domain.Entities;
+using SOLUTIONNAME.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+namespace SOLUTIONNAME.Infrastructure.Repositories;
+
+public class UPPERNAMERepository : IUPPERNAMERepository
+{
+	private readonly UPPERNAMEDbContext _context;
+
+	public UPPERNAMERepository(UPPERNAMEDbContext context)
+	{
+		_context = context;
+	}
+
+	public UPPERNAME Add(UPPERNAME entity)
+	{
+		return _context.UPPERNAME.Add(entity).Entity;
+	}
+
+	public async Task<UPPERNAME> GetAsync(Guid id)
+	{
+		return await _context.UPPERNAME
+			.Where(x => x.Id == id)
+			.AsNoTracking()
+			.FirstOrDefaultAsync();
+	}
+
+	public async Task<IEnumerable<UPPERNAME>> GetAsync()
+	{
+		return await _context.UPPERNAME
+			.Where(x => !x.IsDeleted)
+			.AsNoTracking()
+			.ToListAsync();
+	}
+
+	public UPPERNAME Update(UPPERNAME entity)
+	{
+		_context.UPPERNAME.Entry(entity).State = EntityState.Modified;
+
+		return entity;
+	}
+
+	public IUnitOfWork UnitOfWork => _context;
+}

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CRUDMaster.Views
 {
     /// <summary>
-    /// Interaktionslogik für ProfileMenuView.xaml
+    /// Interaktionslogik für StartView.xaml
     /// </summary>
-    public partial class ProfileMenuView : UserControl
+    public partial class StartView : UserControl
     {
-        public ProfileMenuView()
+        public StartView()
         {
             InitializeComponent();
         }

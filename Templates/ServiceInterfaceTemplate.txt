@@ -1,1 +1,17 @@
-﻿
+﻿using SOLUTIONNAME.Domain.Requests.UPPERNAME;
+using SOLUTIONNAME.Domain.Responses;
+
+namespace SOLUTIONNAME.Domain.Interfaces.UPPERNAME;
+
+public interface IUPPERNAMEService
+{
+	Task<UPPERNAMEResponse> AddAsync(AddUPPERNAMERequest request);
+
+	Task<UPPERNAMEResponse> DeleteAsync(DeleteUPPERNAMERequest request);
+
+	Task<UPPERNAMEResponse> EditAsync(EditUPPERNAMERequest request);
+
+	Task<UPPERNAMEResponse> GetAsync(GetUPPERNAMERequest request);
+
+	Task<IEnumerable<UPPERNAMEResponse>> GetAsync();
+}

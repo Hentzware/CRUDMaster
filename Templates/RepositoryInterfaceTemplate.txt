@@ -1,1 +1,13 @@
-﻿
+﻿using SOLUTIONNAME.Domain.Entities;
+using SOLUTIONNAME.Domain.Interfaces;
+
+public interface IUPPERNAMERepository : IRepository
+{
+	UPPERNAME Add(UPPERNAME entity);
+
+	Task<UPPERNAME> GetAsync(Guid id);
+
+	Task<IEnumerable<UPPERNAME>> GetAsync();
+
+	UPPERNAME Update(UPPERNAME entity);
+}

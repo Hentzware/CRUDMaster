@@ -1,56 +1,67 @@
-﻿
-private ISERVICE _service;
+﻿using SOLUTIONNAME.Domain.Interfaces.UPPERNAME;
+using SOLUTIONNAME.Domain.Requests.UPPERNAME;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-CLASS(ISERVICE service)
+namespace SOLUTIONNAME.API.Controllers;
+
+[Route("LOWERNAME")]
+[ApiController]
+public class UPPERNAMEController : ControllerBase
 {
-	_service = service;
-}
+	private readonly IUPPERNAMEService _service;
 
-[Authorize(Roles = "Admin")]
-[HttpGet]
-public async Task<IActionResult> Get()
-{
-	var result = await _service.GetAsync();
+	public UPPERNAMEController(IUPPERNAMEService service)
+	{
+		_service = service;
+	}
 
-	return Ok(result);
-}
+	[Authorize(Roles = "Admin")]
+	[HttpDelete("{id:guid}")]
+	public async Task<IActionResult> Delete(Guid id)
+	{
+		var request = new DeleteUPPERNAMERequest() { Id = id };
+		var result = await _service.DeleteAsync(request);
 
-[Authorize(Roles = "Admin")]
-[HttpGet("{id:guid}")]
-public async Task<IActionResult> GetById(Guid id)
-{
-	var request = new GETREQUEST() { Id = id };
-	var result = await _service.GetAsync(request);
+		return NoContent();
+	}
 
-	return Ok(result);
-}
+	[Authorize(Roles = "Admin")]
+	[HttpGet]
+	public async Task<IActionResult> Get()
+	{
+		var result = await _service.GetAsync();
 
-[Authorize(Roles = "Admin")]
-[HttpPost]
-public async Task<IActionResult> Post(ADDREQUEST request)
-{
-	var result = await _service.AddAsync(request);
+		return Ok(result);
+	}
 
-	return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
-}
+	[Authorize(Roles = "Admin")]
+	[HttpGet("{id:guid}")]
+	public async Task<IActionResult> GetById(Guid id)
+	{
+		var request = new GetUPPERNAMERequest() { Id = id };
+		var result = await _service.GetAsync(request);
 
-[Authorize(Roles = "Admin")]
-[HttpPut("{id:guid}")]
-public async Task<IActionResult> Put(Guid id, EDITREQUEST request)
-{
-	request.Id = id;
+		return Ok(result);
+	}
 
-	var result = await _service.AddAsync(request);
+	[Authorize(Roles = "Admin")]
+	[HttpPost]
+	public async Task<IActionResult> Post(AddUPPERNAMERequest request)
+	{
+		var result = await _service.AddAsync(request);
 
-	return Ok(result);
-}
+		return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+	}
 
-[Authorize(Roles = "Admin")]
-[HttpDelete("{id:guid}")]
-public async Task<IActionResult> Delete(Guid id)
-{
-	var request = new DELETEREQUEST() { Id = id };
-	var result = await _service.DeleteAsync(request);
+	[Authorize(Roles = "Admin")]
+	[HttpPut("{id:guid}")]
+	public async Task<IActionResult> Put(Guid id, EditUPPERNAMERequest request)
+	{
+		request.Id = id;
 
-	return NoContent();
+		var result = await _service.EditAsync(request);
+
+		return Ok(result);
+	}
 }

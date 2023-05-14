@@ -1,35 +1,40 @@
-﻿namespace CRUDMaster.Entities
+﻿namespace CRUDMaster.Entities;
+
+public class Profile
 {
-    public class Profile
-    {
-        public string Name { get; set; }
+    public string APIPath { get; set; }
 
-        public string SolutionPath { get; set; }
+    public string ControllersPath { get; set; }
 
-        public string ProjectDomainPath { get; set; }
+    public string DomainPath { get; set; }
 
-        public string ProjectInfrastructurePath { get; set; }
+    public string EntitiesPath { get; set; }
 
-        public string ProjectApiPath { get; set; }
+    public string EntityName { get; set; }
 
-        public string ControllerPath { get; set; }
+    public string EntityNameLower { get; set; }
 
-        public string ExtensionPath { get; set; }
+    public string BaseEntityFilePath { get; set; }
 
-        public string InterfacePath { get; set; }
+    public string ExtensionsPath { get; set; }
 
-        public string ServicePath { get; set; }
+    public string InfrastructurePath { get; set; }
 
-        public string RequestPath { get; set; }
+    public string InterfacesPath { get; set; }
 
-        public string ResponsePath { get; set; }
+    public string SolutionName { get; set; }
 
-        public string SchemaPath { get; set; }
+    public string ProfilesPath { get; set; }
 
-        public string ProfilePath { get; set; }
+    public string RepositoriesPath { get; set; }
 
-        public string RepositoryPath { get; set; }
+    public string RequestsPath { get; set; }
 
-        public string EntityPath { get; set; }
-    }
+    public string ResponsesPath { get; set; }
+
+    public string SchemaDefinitionsPath { get; set; }
+
+    public string ServicesPath { get; set; }
+
+    public string SolutionPath { get; set; }
 }

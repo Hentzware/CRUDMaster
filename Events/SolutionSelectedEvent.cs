@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Prism.Events;
 
-namespace CRUDMaster.Services
+namespace CRUDMaster.Events
 {
-    public class StringReplacerService
+    public class SolutionSelectedEvent : PubSubEvent<string>
     {
-
     }
 }
