@@ -27,12 +27,116 @@ public class TemplateService : ITemplateService
         CreateSchemaDefinition();
         CreateController();
         CreateEntity();
-        MessageBox.Show("Ok");
     }
 
     public void DeleteEndpoint(Profile profile)
     {
         _profile = profile;
+
+        var serviceFilePath = Path.Combine(_profile.ServicesPath, $"{_profile.EntityName}Service.cs");
+
+        if (File.Exists(serviceFilePath))
+        {
+            File.Delete(serviceFilePath);
+        }
+
+        var serviceInterfaceFilePath = Path.Combine(_profile.InterfacesPath, _profile.EntityName, $"I{_profile.EntityName}Service.cs");
+
+        if (File.Exists(serviceInterfaceFilePath))
+        {
+            File.Delete(serviceInterfaceFilePath);
+        }
+
+        var repositoryFilePath = Path.Combine(_profile.RepositoriesPath, $"{_profile.EntityName}Repository.cs");
+
+        if (File.Exists(repositoryFilePath))
+        {
+            File.Delete(repositoryFilePath);
+        }
+
+        var repositoryInterfaceFilePath = Path.Combine(_profile.InterfacesPath, _profile.EntityName, $"I{_profile.EntityName}Repository.cs");
+
+        if (File.Exists(repositoryInterfaceFilePath))
+        {
+            File.Delete(repositoryInterfaceFilePath);
+        }
+
+        var repositoryInterfaceFolderPath = Path.Combine(_profile.InterfacesPath, _profile.EntityName);
+
+        if (Directory.Exists(repositoryInterfaceFolderPath))
+        {
+            Directory.Delete(repositoryInterfaceFolderPath, true);
+        }
+
+        var profileFilePath = Path.Combine(_profile.ProfilesPath, $"{_profile.EntityName}Profile.cs");
+
+        if (File.Exists(profileFilePath))
+        {
+            File.Delete(profileFilePath);
+        }
+
+        var getRequestFilePath = Path.Combine(_profile.RequestsPath, _profile.EntityName, $"Get{_profile.EntityName}Request.cs");
+
+        if (File.Exists(getRequestFilePath))
+        {
+            File.Delete(getRequestFilePath);
+        }
+
+        var addRequestFilePath = Path.Combine(_profile.RequestsPath, _profile.EntityName, $"Add{_profile.EntityName}Request.cs");
+
+        if (File.Exists(addRequestFilePath))
+        {
+            File.Delete(addRequestFilePath);
+        }
+
+        var editRequestFilePath = Path.Combine(_profile.RequestsPath, _profile.EntityName, $"Edit{_profile.EntityName}Request.cs");
+
+        if (File.Exists(editRequestFilePath))
+        {
+            File.Delete(editRequestFilePath);
+        }
+
+        var deleteRequestFilePath = Path.Combine(_profile.RequestsPath, _profile.EntityName, $"Delete{_profile.EntityName}Request.cs");
+
+        if (File.Exists(deleteRequestFilePath))
+        {
+            File.Delete(deleteRequestFilePath);
+        }
+
+        var requestsFolderPath = Path.Combine(_profile.RequestsPath, _profile.EntityName);
+
+        if (Directory.Exists(requestsFolderPath))
+        {
+            Directory.Delete(requestsFolderPath, true);
+        }
+
+        var responseFilePath = Path.Combine(_profile.ResponsesPath, $"{_profile.EntityName}Response.cs");
+
+        if (File.Exists(responseFilePath))
+        {
+            File.Delete(responseFilePath);
+        }
+
+        var schemaDefinitionFilePath = Path.Combine(_profile.SchemaDefinitionsPath, $"{_profile.EntityName}SchemaDefinition.cs");
+
+        if (File.Exists(schemaDefinitionFilePath))
+        {
+            File.Delete(schemaDefinitionFilePath);
+        }
+
+        var controllerFilePath = Path.Combine(_profile.ControllersPath, $"{_profile.EntityName}Controller.cs");
+
+        if (File.Exists(controllerFilePath))
+        {
+            File.Delete(controllerFilePath);
+        }
+
+        var entityFilePath = Path.Combine(_profile.EntitiesPath, $"{_profile.EntityName}.cs");
+
+        if (File.Exists(entityFilePath))
+        {
+            File.Delete(entityFilePath);
+        }
     }
 
     private void CreateService()

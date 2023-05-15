@@ -79,13 +79,15 @@ public class MainViewModel : BindableBase
         _profile.EntityName = EndpointName;
         _profile.EntityNameLower = char.ToLower(EndpointName[0]) + EndpointName.Substring(1);
         _templateService.CreateEndpoint(_profile);
+        Endpoints = _scanner.ScanEndpoints(_profile).ToList();
     }
 
     private void ExecuteDeleteEndpointCommand()
     {
         _profile.EntityName = SelectedEndpoint;
-        _profile.EntityNameLower = char.ToLower(EndpointName[0]) + EndpointName.Substring(1);
+        _profile.EntityNameLower = char.ToLower(SelectedEndpoint[0]) + SelectedEndpoint.Substring(1);
         _templateService.DeleteEndpoint(_profile);
+        Endpoints = _scanner.ScanEndpoints(_profile).ToList();
     }
 
     private void OnSolutionSelected(string solutionPath)
